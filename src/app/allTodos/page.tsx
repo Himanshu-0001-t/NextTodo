@@ -10,7 +10,7 @@ const allTodosPage = () => {
     const getTodos = async () =>{
 
         const res = await axios.get('/api/todo/allTodos')
-        console.log(res.data.allTods, "This is respponse")
+      
          setTodo(res.data.allTods)
         }
 
@@ -19,17 +19,19 @@ const allTodosPage = () => {
         useEffect(() =>{
               getTodos()
         } , [])
-        
+
   return (
     <>
      <Header/>
-    
+          <div className='flex items-center justify-around h-full my-10'>
+
           {todo.map((elm : any) =>{
-                   return  <div key={elm._id}>
+            return  <div key={elm._id} className='border-2 p-5 min-w-80 max-w-2xl mx-20'>
                            <p>Title : {elm.title} </p>
                            <p>Description : {elm.des}</p>
                         </div>
           })}
+        </div>
     </>
   )
 }
